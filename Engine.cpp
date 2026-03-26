@@ -3,6 +3,9 @@
 #include "World.h"
 #include <conio.h>
 
+UEngine* UEngine::Instance = nullptr;
+int UEngine::KeyCode = 0;
+
 UEngine::UEngine()
 {
 	Init();
@@ -42,7 +45,7 @@ void UEngine::Term()
 
 void UEngine::Input()
 {
-	int keyCode = _getch();
+	KeyCode = _getch();
 }
 
 void UEngine::Tick()

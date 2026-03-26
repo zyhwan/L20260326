@@ -31,7 +31,8 @@ void UWorld::Load(std::string MapName)
 		return;
 	}
 	int y = 0;
-	while (std::getline(File, Line)) {
+	while (!File.eof()) {
+		std::getline(File, Line);
 		for (int i = 0; i < Line.length(); ++i)
 		{
 			if (Line[i] == '#')

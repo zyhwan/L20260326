@@ -3,7 +3,7 @@
 #include "Actor.h"
 
 
-AActor::AActor(int InX, int Iny, char InMesh) : X(InX), Y(Iny), Mesh(InMesh)
+AActor::AActor(int InX, int InY, char InMesh) : X(InX), Y(InY), Mesh(InMesh)
 {
 }
 
@@ -28,5 +28,10 @@ void AActor::Render()
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Coordinate);
 
 	std::cout << Mesh;
+}
 
+void AActor::SetActorLocation(int InX, int InY)
+{
+	X = InX;
+	Y = InY;
 }
