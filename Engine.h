@@ -2,6 +2,7 @@
 #include <vector>
 
 class AActor;
+class UWorld;
 
 class UEngine
 {
@@ -13,7 +14,8 @@ public:
 	void Term();
 
 	void Run();
-	void Render();
+
+	UWorld* GetWorld();
 
 	void SpawnActor(AActor* NewActor);
 
@@ -22,7 +24,12 @@ public:
 
 protected:
 	void Input();
+	void Tick();
+	void Render();
 
-	std::vector<AActor*> Actors;
+	class UWorld* World;
+
+	int bIsRunning : 1; //:콜론 -> int 변수를 1bit만 사용하겠다는 의미.
+
 };
 

@@ -1,48 +1,62 @@
 #include "Engine.h"
 #include "Actor.h"
+#include "World.h"
+#include <conio.h>
 
 UEngine::UEngine()
 {
+	Init();
 }
 
 UEngine::~UEngine()
 {
+	Term();
 }
 
 void UEngine::Init()
 {
-
+	bIsRunning = true;
+	World = new UWorld();
 }
 
 void UEngine::Run() 
 {
-	for (auto A : Actors)
+	while (bIsRunning)
 	{
-		A->Tick();
+		Input();
+		Tick();
+		Render();
 	}
+}
+
+UWorld* UEngine::GetWorld()
+{
+	return World;
 }
 
 void UEngine::Term()
 {
-	for (auto& A : Actors)
-	{
-		A->~AActor();
-	}
+	delete World;
+	World = nullptr;
 }
 
 void UEngine::Input()
 {
+	int keyCode = _getch();
+}
 
+void UEngine::Tick()
+{
+	World->Tick();
 }
 
 void UEngine::Render()
 {
-
+	World->Render();
 }
 
 void UEngine::SpawnActor(AActor* NewActor)
 {
-	Actors.push_back(new AActor());
 }
 
 std::vector<AActor*> UEngine::GetAllActorsOfClass()
